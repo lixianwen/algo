@@ -1,5 +1,5 @@
 /*
-This is the implement of singly linked list with head node
+This is the implemention of singly linked list with head node
 */
 
 #include <stdio.h>
