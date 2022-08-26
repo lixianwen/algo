@@ -142,14 +142,12 @@ unsigned int length(const LinkedList *l)
     return len;
 }
 
-
-
 int lruCache(LinkedList *l, int key)
 {
     int result;
     int linear_index = search(l, key);
-    if (linear_index != -1) {    // key in linkedlist and key isn't first node
-        if (linear_index == 1) {
+    if (linear_index != -1) {     // key in linkedlist
+        if (linear_index == 1) {  // key match the first node, so just get the value
             result = l->head->next->value;
         } else {
             delete(l, linear_index, &result);
