@@ -56,3 +56,25 @@ void insertion_sort(int a[], int n) {
         a[j+1] = tmp;  // insert data on that position
     }
 }
+
+
+/*
+Time complexity: O(n^2)
+Space complexity: O(1), aka sorted inplace
+Stability: unstable
+*/
+void selection_sort(int a[], int n) {
+    if (n < 2) return;
+
+    for (int i=0; i<n; i++) {
+        int last_min_index = i;
+        for (int j=i; j<n-1; j++) {
+            if (a[j+1] < a[j]) {
+                if (a[j+1] < a[last_min_index]) {
+                    last_min_index = j + 1;
+                }  
+            }
+        }
+        swap(&a[i], &a[last_min_index]);
+    }
+}
