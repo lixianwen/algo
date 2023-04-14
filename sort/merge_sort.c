@@ -39,15 +39,15 @@ void merge(int a[], int p, int q, int r) {
 
 
 /*
-递推公式：merge_sort_resursion(p...r) = merge(merge_sort_resursion(p...q), merge_sort_resursion(q+1...r))
+递推公式：merge_sort_recursion(p...r) = merge(merge_sort_recursion(p...q), merge_sort_recursion(q+1...r))
 终止条件：p == r
 */
-void merge_sort_resursion(int a[], int p, int r) {
+void merge_sort_recursion(int a[], int p, int r) {
     if (p == r) return;
 
     int q = (p + r) / 2;
-    merge_sort_resursion(a, p, q);
-    merge_sort_resursion(a, q+1, r);
+    merge_sort_recursion(a, p, q);
+    merge_sort_recursion(a, q+1, r);
     merge(a, p, q, r);
 }
 
@@ -58,5 +58,5 @@ Space complexity: O(n)
 Stability: condition `a[i] <= a[j]` in function `merge` promise to be stable
 */
 void merge_sort(int a[], int n) {
-    merge_sort_resursion(a, 0, n-1);
+    merge_sort_recursion(a, 0, n-1);
 }
