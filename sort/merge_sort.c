@@ -1,7 +1,8 @@
 /*
+Merge two ordered array a[p...q] and a[q+1...r] to array `a`
+
 Time complexity: O(n) + O(n) -> O(2n) -> O(n)
 Space complexity: O(n)
-Merge two ordered array a[p...q] and a[q+1...r] to array `a`
 */
 void merge(int a[], int p, int q, int r) {
     int n = r - p + 1;
@@ -40,7 +41,6 @@ void merge(int a[], int p, int q, int r) {
 /*
 递推公式：merge_sort_resursion(p...r) = merge(merge_sort_resursion(p...q), merge_sort_resursion(q+1...r))
 终止条件：p == r
-q = (p + r) / 2
 */
 void merge_sort_resursion(int a[], int p, int r) {
     if (p == r) return;
