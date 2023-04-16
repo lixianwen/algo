@@ -121,3 +121,27 @@ int bs3(int a[], int n, int value) {
 
     return -1;
 }
+
+
+/*
+Find the LAST element `i` <= specific value in array `a`
+*/
+int bs4(int a[], int n, int value) {
+    int low = 0;
+    int high = n - 1;
+
+    while (low <= high) {
+        int mid = low + ((high - low) >> 1);
+        if (a[mid] <= value) {
+            if (mid == n-1 || a[mid+1] > value) {
+                return mid;
+            } else {
+                low = mid + 1;
+            }
+        } else {
+            high = mid - 1;
+        }
+    }
+
+    return -1;
+}
