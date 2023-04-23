@@ -93,6 +93,9 @@ int max_depth(const node_ptr_t t) {
 }
 
 
+/*
+Time complexity: O(n)
+*/
 void pre_order_travel(const node_ptr_t t) {
     if (empty(t)) return;
 
@@ -102,6 +105,9 @@ void pre_order_travel(const node_ptr_t t) {
 }
 
 
+/*
+Time complexity: O(n)
+*/
 void in_order_travel(const node_ptr_t t) {
     if (empty(t)) return;
 
@@ -111,6 +117,9 @@ void in_order_travel(const node_ptr_t t) {
 }
 
 
+/*
+Time complexity: O(n)
+*/
 void post_order_travel(const node_ptr_t t) {
     if (empty(t)) return;
 
