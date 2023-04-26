@@ -64,25 +64,30 @@ void insert(heap_ptr_t h, unsigned int n, int key) {
 }
 
 
-void delete_top_node(heap_ptr_t h, unsigned int n) {
-    if (h->count == 0) return;
-
-    h->array[1] = h->array[h->count--];  // deleted
-
-    // heapify from top to bottom
-    for (unsigned int i=1; i<n;) {
+/*
+heapify from top to bottom
+*/
+void top_to_bottom_heapify(int a[], unsigned int n, unsigned int i) {
+    while (i < n) {
         unsigned int left = i * 2;
         unsigned int right = i * 2 + 1;
-        if (h->array[i] < h->array[left]) {
-            swap(&h->array[i], &h->array[left]);
+        if (a[i] < a[left]) {
+            swap(&a[i], &a[left]);
             i = left;
-        } else if (h->array[i] < h->array[right]) {
-            swap(&h->array[i], &h->array[right]);
+        } else if (a[i] < a[right]) {
+            swap(&a[i], &a[right]);
             i = right;
         } else {
             break;
         }
     }
+}
+
+void delete_top_node(heap_ptr_t h, unsigned int n) {
+    if (h->count == 0) return;
+
+    h->array[1] = h->array[h->count--];  // deleted
+    top_to_bottom_heapify(h->array, n, 1);
 }
 
 
