@@ -90,6 +90,36 @@ void delete_top_node(heap_ptr_t h) {
 }
 
 
+/*
+Build heap inplace.
+
+Index between count/2 + 1 to count are leaf node.
+Handle non leaf node between count/2 to 1
+
+Time complexity: O(n)
+*/
+void build_heap(heap_ptr_t h) {
+    for (unsigned int i=h->count/2; i>0; i--) {
+        top_to_bottom_heapify(h->array, h->count, i);
+    }
+}
+
+
+/*
+Build heap first, then swap head and count.
+Build heap again for head to count-1, then swap head and count-1.
+Repeat it until count == 1
+
+Time complexity: O(nlogn)
+*/
+void heap_sort(heap_ptr_t h) {
+    build_heap(h);
+    unsigned int i = h->count;
+    while (i > 1) {
+        swap(&h->array[i], &h->array[1]);
+        top_to_bottom_heapify(h->array, --i, 1);
+    }
+}
 
 
 int main(void) {
@@ -98,5 +128,6 @@ int main(void) {
     create(&h, DEFAULT_INITIAL_CAPACITY);
     insert(&h, DEFAULT_INITIAL_CAPACITY, 12);
     delete_top_node(&h);
+    heap_sort(&h);
     return 0;
 }
