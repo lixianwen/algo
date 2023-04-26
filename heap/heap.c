@@ -66,29 +66,30 @@ void insert(heap_ptr_t h, unsigned int n, int key) {
 
 /*
 heapify from top to bottom
+
+n = h->count
 */
 void top_to_bottom_heapify(int a[], unsigned int n, unsigned int i) {
-    while (i < n) {
+    while (1) {
         unsigned int left = i * 2;
         unsigned int right = i * 2 + 1;
-        if (a[i] < a[left]) {
-            swap(&a[i], &a[left]);
-            i = left;
-        } else if (a[i] < a[right]) {
-            swap(&a[i], &a[right]);
-            i = right;
-        } else {
-            break;
-        }
+        unsigned int max_pos = i;
+        if (left <=n && a[max_pos] < a[left]) max_pos = left;
+        if (right <=n && a[max_pos] < a[right]) max_pos = right;
+        if (max_pos == i) break;
+        swap(&a[max_pos], &a[i]);
+        i = max_pos;
     }
 }
 
-void delete_top_node(heap_ptr_t h, unsigned int n) {
+void delete_top_node(heap_ptr_t h) {
     if (h->count == 0) return;
 
     h->array[1] = h->array[h->count--];  // deleted
-    top_to_bottom_heapify(h->array, n, 1);
+    top_to_bottom_heapify(h->array, h->count, 1);
 }
+
+
 
 
 int main(void) {
@@ -96,6 +97,6 @@ int main(void) {
     heap_t h = {.count=0, .array={0}};
     create(&h, DEFAULT_INITIAL_CAPACITY);
     insert(&h, DEFAULT_INITIAL_CAPACITY, 12);
-    delete_top_node(&h, DEFAULT_INITIAL_CAPACITY);
+    delete_top_node(&h);
     return 0;
 }
