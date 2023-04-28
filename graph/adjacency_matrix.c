@@ -2,16 +2,14 @@
 #include <stdbool.h>
 #include <stdlib.h>
 
-/*
-The default initial capacity - MUST be a power of two.
-*/
+/* The default initial capacity - MUST be a power of two. */
 #define DEFAULT_INITIAL_CAPACITY (1 << 3)
 
 #define SUCCESS 0
 #define FAILURE -1
 
 typedef struct {
-    /* vertex table*/
+    /* vertex table */
     char vexs[DEFAULT_INITIAL_CAPACITY];
     /* adjacency matrix（edge table）*/
     int arc[DEFAULT_INITIAL_CAPACITY][DEFAULT_INITIAL_CAPACITY];
@@ -32,7 +30,6 @@ void init(graph_ptr_t g, int n) {
 
 
 int construct(graph_ptr_t g, unsigned int n) {
-    // unsigned int vertexs, edges;
     printf("Please input number of vertex & edge: \n");
     scanf("%d %d", &g->vertexs, &g->edges);
     if (g->vertexs < 1 || g->vertexs > n) return FAILURE;
@@ -100,7 +97,7 @@ bool has_edge(const graph_ptr_t g, char v1, char v2) {
 
 
 /*
-:param vertex: index of g->vexs
+:param vertex: element of g->vexs
 
 :return: vertex's degree
 */
@@ -118,7 +115,7 @@ unsigned int get_degree(const graph_ptr_t g, char vertex) {
 
 
 /*
-:param vertex: index of g->vexs
+:param vertex: element of g->vexs
 
 :return: vertex's adjacents
 
